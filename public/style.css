@@ -1,0 +1,142 @@
+body {
+  background-image: url(./img/background.jpeg);
+  background-size: 1800px 800px;
+}
+
+#game-name {
+  font-size: 6rem;
+  text-align: center;
+  color: white;
+  font-family: 'Bebas Neue', sans-serif;
+  margin-top: 30px;
+}
+
+.welcome {
+  font-size: 3rem;
+  margin: 40px;
+  font-family: 'Gabarito', cursive;
+  text-align: center;
+  color: white;
+  margin-top: 130px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 15%;
+  padding: 25px;
+  background-color: #222;
+  font-family: 'Gabarito', cursive;
+  font-size: 20px;
+  color: white;
+  border-style: none;
+  border-radius: 4px;
+  margin: 10px;
+  margin-top: 30px;
+}
+
+button:hover {
+  opacity: 0.80;
+}
+
+input {
+  display: flex;
+  width: 23%;
+  margin-bottom: 10px;
+  font-family: 'Gabarito', cursive;
+  padding: 15px;
+  border: 3px solid black;
+  border-radius: 4px;
+}
+
+a {
+  text-decoration: none;
+  text-align: center;
+  color: white;
+}
+
+a:hover {
+  opacity: 0.70;
+}
+
+p {
+  color: white;
+  text-align: center;
+}
+
+.left-board-container {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  margin-left: 200px;
+}
+
+.right-board-container {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  margin-right: 230px;
+  margin-top: -230px;
+}
+
+.keyboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.board {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 5px;
+}
+
+.board-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+}
+
+.tile {
+  display: inline-flex;
+  height: 40px;
+  width: 40px;
+  border: 1px solid white;
+  background-color: #3a3a3c;
+  border-radius: 2px;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-family: 'Gabarito', cursive;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 50px;
+  margin-right: 5px;
+  background-color: #3a3a3c;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-size: 30px;
+  font-family: 'Gabarito', cursive;
+}
+
+.pressed {
+  box-shadow: 0 3px 4px 0 #DBEDF3;
+  opacity: 0.5;
+}
