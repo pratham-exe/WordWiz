@@ -5,6 +5,10 @@ const left_player = ['w','o','r','l','d'];
 const right_player = ["truth"];
 
 document.addEventListener("keypress", (event) => {
+  if (count === 51) {
+    alert("Game Over");
+    count = 1;
+  }
   test = document.getElementById(count);
   if (count % 5 === 0) {
     if (keys.includes(event.key.toLowerCase())) {
@@ -15,18 +19,7 @@ document.addEventListener("keypress", (event) => {
   if (event.key === "Enter" || event.key === "Delete" || count % 5 === 0) {
     keyAnimate(event.key);
     if (event.key === "Enter") {
-      if (count % 5 === 0) {
-        let check = [], correct = 0;
-        for (let i=1;i<=5;i++) {
-          let letter = document.getElementById(i+keep).innerHTML;
-          check.push(letter);
-        }
-        for (let i=0;i<5;i++) {
-          if (left_player[i] === check[i].toLowerCase()) {
-            correct++;
-          }
-        }
-        keep = keep + 5;
+      if (count % 5 === 0 && test.textContent !== "") {
         count++;
         fiveCount = 1;
       }
