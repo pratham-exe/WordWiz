@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import BackspaceIcon from '@mui/icons-material/Backspace';
-import "./gameIndex.js";
+import "./game.js";
+import "./Game.css";
+
+var game_start = false;
 
 function Game() {
+  const [start, setStart] = useState(false);
+
+  function updateStart() {
+    setStart(!start);
+    game_start = start;
+  }
+
   return (
     <div>
       <div className="left-board-container">
         <div className="board">
+          <input style={{width: 200}} type="password" placeholder="5 letter word for your opponent" />
           <div className="board-row">
             <div className="tile" id="1"></div>
             <div className="tile" id="2"></div>
@@ -45,8 +56,10 @@ function Game() {
           </div>
         </div>
       </div>
+      <button className="start" onClick={updateStart}>START</button>
       <div className="right-board-container">
         <div className="board">
+          <input style={{width: 200}} type="password" placeholder="5 letter word for your opponent" />
           <div className="board-row">
             <div className="tile" id="6"></div>
             <div className="tile" id="7"></div>
@@ -127,3 +140,4 @@ function Game() {
 }
 
 export default Game;
+export { game_start };
