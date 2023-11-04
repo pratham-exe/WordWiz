@@ -1,8 +1,6 @@
 const keys = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','Enter','Delete'];
 
 var count = 1, test, fiveCount = 1, keep = 0;
-const left_player = ['w','o','r','l','d'];
-const right_player = ["truth"];
 
 document.addEventListener("keypress", (event) => {
   if (count === 51) {
