@@ -1,24 +1,129 @@
 import React, { useState } from "react";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import BackspaceIcon from '@mui/icons-material/Backspace';
-import "./game.js";
 import "./Game.css";
 
-var game_start = false;
-
 function Game() {
-  const [start, setStart] = useState(false);
+  const [start, setStart] = useState(true);
+  const [word, setWord] = useState({
+    word1: "",
+    word2: ""
+  })
 
   function updateStart() {
-    setStart(!start);
-    game_start = start;
+    if (word.word1.length === 5 && word.word2.length === 5) {
+      setStart(!start);
+    }
+  }
+
+  function updateWord(event) {
+    const { name, value } = event.target;
+    setWord((prevValue) => {
+      return {
+        ...prevValue,
+        [name] : value
+      }
+    })
+  }
+
+  const keys = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','Enter','Delete'];
+
+  var count = 1, test, fiveCount = 1, word_count = 0;
+
+  {!start && (
+    document.addEventListener("keypress", (event) => {
+      check_game();
+      test = document.getElementById(count);
+      if (count % 5 === 0) {
+        if (keys.includes(event.key.toLowerCase())) {
+          test.textContent = event.key.toUpperCase();
+          fiveCount = count;
+        }
+      }
+      if (event.key === "Enter" || event.key === "Delete" || count % 5 === 0) {
+        keyAnimate(event.key);
+        if (event.key === "Enter") {
+          enter_button();
+        } else if (event.key === "Delete") {
+          delete_button();
+        }
+      } else if (!(keys.includes(event.key.toLowerCase()))) {
+        count = count;
+      } else {
+        count++;
+        console.log(count);
+        keyAnimate(event.key.toLowerCase());
+        if (keys.includes(event.key.toLowerCase())) {
+          test.textContent = event.key.toUpperCase();
+        }
+      }
+    })
+  )}
+
+  function enter_button() {
+    if (count % 5 === 0 && test.textContent !== "") {
+      count++;
+      fiveCount = 1;
+      let entered_word = "";
+      for (let i=1;i<=5;i++) {
+        let letter = document.getElementById(word_count + i).innerHTML;
+        entered_word += letter;
+      }
+      word_count += 5;
+      if ((word_count + 5) % 10 === 0) {
+        if (word.word2.toUpperCase() === entered_word) {
+          for (let i=1;i<=5;i++) {
+            document.getElementById((word_count-5) + i).classList.add("green");
+          }
+        }
+      } else {
+        if (word.word1.toUpperCase() === entered_word) {
+          for (let i=1;i<=5;i++) {
+            document.getElementById((word_count-5) + i).classList.add("green");
+          }
+        }
+      }
+    }
+  }
+
+  function delete_button() {
+    if ((count - 1) % 5 === 0) {
+      count = count;
+    } else if (count === 1) {
+      test.textContent = "";
+      count = 1;
+    } else if (fiveCount % 5 === 0) {
+      test = document.getElementById(fiveCount);
+      test.textContent = "";
+      fiveCount = 1;
+    } else {
+      test = document.getElementById(--count);
+      test.textContent = "";
+    }
+  }
+
+  function check_game() {
+    if (count === 51) {
+      alert("Game Over");
+      count = 1;
+    }
+  }
+
+  function keyAnimate(currentKey) {
+    if (keys.includes(currentKey)) {
+      var pressedKey = document.querySelector("." + currentKey);
+      pressedKey.classList.add("pressed");
+      setTimeout(() => {
+        pressedKey.classList.remove("pressed")
+      }, 100);
+    }
   }
 
   return (
     <div>
       <div className="left-board-container">
         <div className="board">
-          <input style={{width: 200}} type="password" placeholder="5 letter word for your opponent" />
+          <input style={{width: 200}} type="password" placeholder="5 letter word for your opponent" name="word1" value={word.word1} onChange={updateWord} maxLength={5} />
           <div className="board-row">
             <div className="tile" id="1"></div>
             <div className="tile" id="2"></div>
@@ -56,10 +161,10 @@ function Game() {
           </div>
         </div>
       </div>
-      <button className="start" onClick={updateStart}>START</button>
-      <div className="right-board-container">
+      {start && <button className="start" onClick={updateStart}>START</button>}
+      <div style={start ? {marginTop: -155} : {marginTop: -295}} className="right-board-container">
         <div className="board">
-          <input style={{width: 200}} type="password" placeholder="5 letter word for your opponent" />
+          <input style={{width: 200}} type="password" placeholder="5 letter word for your opponent" name="word2" value={word.word2} onChange={updateWord} maxLength={5} />
           <div className="board-row">
             <div className="tile" id="6"></div>
             <div className="tile" id="7"></div>
@@ -140,4 +245,3 @@ function Game() {
 }
 
 export default Game;
-export { game_start };
