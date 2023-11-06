@@ -1,14 +1,25 @@
 import React, { useState } from "react";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import BackspaceIcon from '@mui/icons-material/Backspace';
+import "./Popup.css";
 import "./Game.css";
 
 function Game() {
   const [start, setStart] = useState(true);
+  const [popup1, setPopup1] = useState(false);
+  const [popup2, setPopup2] = useState(false);
   const [word, setWord] = useState({
     word1: "",
     word2: ""
   })
+
+  function updatePopup1() {
+    setPopup1(true);
+  }
+
+  function updatePopup2() {
+    setPopup2(true);
+  }
 
   function updateStart() {
     if (word.word1.length === 5 && word.word2.length === 5) {
@@ -51,7 +62,6 @@ function Game() {
         count = count;
       } else {
         count++;
-        console.log(count);
         keyAnimate(event.key.toLowerCase());
         if (keys.includes(event.key.toLowerCase())) {
           test.textContent = event.key.toUpperCase();
@@ -75,12 +85,14 @@ function Game() {
           for (let i=1;i<=5;i++) {
             document.getElementById((word_count-5) + i).classList.add("green");
           }
+          updatePopup1();
         }
       } else {
         if (word.word1.toUpperCase() === entered_word) {
           for (let i=1;i<=5;i++) {
             document.getElementById((word_count-5) + i).classList.add("green");
           }
+          updatePopup2();
         }
       }
     }
@@ -121,6 +133,17 @@ function Game() {
 
   return (
     <div>
+      {(popup1 || popup2) && (
+        <div className="popup">
+          <div className="overlay"></div>
+          <div className="popup-content">
+            <center>
+              {popup1 ? <h1>Player 1 Wins !</h1> : (popup2 ? <h1>Player 2 Wins !</h1> : null)}
+            </center>
+            <button className="dashboard">Dashboard</button>
+          </div>
+        </div>
+      )}
       <div className="left-board-container">
         <div className="board">
           <input style={{width: 200}} type="password" placeholder="5 letter word for your opponent" name="word1" value={word.word1} onChange={updateWord} maxLength={5} />
