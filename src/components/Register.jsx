@@ -2,6 +2,7 @@ import React from "react";
 import SubHeading from "./SubHeading";
 import Input from "./Input";
 import Password from "./Password.jsx";
+import { Outlet, Link } from "react-router-dom";
 
 function Register() {
   return (
@@ -15,8 +16,9 @@ function Register() {
         <center>
           <button className="main" style={{width: 360, height: 60}}>Register</button>
         </center>
-        <p>Already have an account?<a href=""> Login</a></p>
+        <p>Already have an account?<Link to="/Login"> Login</Link></p>
       </form>
+      <Outlet />
     </div>
   );
 }

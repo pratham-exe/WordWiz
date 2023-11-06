@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import BackspaceIcon from '@mui/icons-material/Backspace';
+import { Outlet, Link } from "react-router-dom";
 import "./Popup.css";
 import "./Game.css";
 
@@ -140,7 +141,7 @@ function Game() {
             <center>
               {popup1 ? <h1>Player 1 Wins !</h1> : (popup2 ? <h1>Player 2 Wins !</h1> : null)}
             </center>
-            <button className="dashboard">Dashboard</button>
+            <button className="dashboard"><Link to="/User">Dashboard</Link></button>
           </div>
         </div>
       )}
@@ -263,6 +264,7 @@ function Game() {
           </div>
         </div>
       </div>
+      <Outlet />
     </div>
   );
 }
