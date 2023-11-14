@@ -9,10 +9,15 @@ function Game() {
   const [start, setStart] = useState(true);
   const [popup1, setPopup1] = useState(false);
   const [popup2, setPopup2] = useState(false);
+  const [popup, setPopup] = useState(false);
   const [word, setWord] = useState({
     word1: "",
     word2: ""
   })
+
+  function updatePopup() {
+    setPopup(true);
+  }
 
   function updatePopup1() {
     setPopup1(true);
@@ -42,9 +47,8 @@ function Game() {
 
   var count = 1, test, fiveCount = 1, word_count = 0;
 
-  {!start && (
+  {(!start && count > 0) && (
     document.addEventListener("keypress", (event) => {
-      check_game();
       test = document.getElementById(count);
       if (count % 5 === 0) {
         if (keys.includes(event.key.toLowerCase())) {
@@ -72,6 +76,7 @@ function Game() {
   )}
 
   function enter_button() {
+    check_game();
     if (count % 5 === 0 && test.textContent !== "") {
       count++;
       fiveCount = 1;
@@ -116,9 +121,8 @@ function Game() {
   }
 
   function check_game() {
-    if (count === 51) {
-      alert("Game Over");
-      count = 1;
+    if (count === 50 && test.textContent !== "") {
+      updatePopup();
     }
   }
 
@@ -134,14 +138,14 @@ function Game() {
 
   return (
     <div>
-      {(popup1 || popup2) && (
+      {(popup1 || popup2 || popup) && (
         <div className="popup">
           <div className="overlay"></div>
           <div className="popup-content">
             <center>
-              {popup1 ? <h1>Player 1 Wins !</h1> : (popup2 ? <h1>Player 2 Wins !</h1> : null)}
+              {popup1 ? <h1>Player 1 Wins !</h1> : (popup2 ? <h1>Player 2 Wins !</h1> : (popup ? <h1>Draw !</h1> : null))}
             </center>
-            <button className="dashboard"><Link to="/User">Dashboard</Link></button>
+            <button className="dashboard"><Link to="/">Home</Link></button>
           </div>
         </div>
       )}
