@@ -92,6 +92,15 @@ function Game() {
             document.getElementById((word_count-5) + i).classList.add("green");
           }
           updatePopup1();
+        } else {
+          for (let i=1;i<=5;i++) {
+            let current_letter = document.getElementById((word_count-5) + i);
+            if (current_letter.innerHTML === (word.word2)[i-1].toUpperCase()) {
+              current_letter.classList.add("green");
+            } else if (word.word2.includes(current_letter.innerHTML.toLowerCase())) {
+              current_letter.classList.add("yellow");
+            }
+          }
         }
       } else {
         if (word.word1.toUpperCase() === entered_word) {
@@ -99,6 +108,15 @@ function Game() {
             document.getElementById((word_count-5) + i).classList.add("green");
           }
           updatePopup2();
+        } else {
+          for (let i=1;i<=5;i++) {
+            let current_letter = document.getElementById((word_count-5) + i);
+            if (current_letter.innerHTML === (word.word1)[i-1].toUpperCase()) {
+              current_letter.classList.add("green");
+            } else if (word.word1.includes(current_letter.innerHTML.toLowerCase())) {
+              current_letter.classList.add("yellow");
+            }
+          }
         }
       }
     }
