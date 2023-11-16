@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import BackspaceIcon from '@mui/icons-material/Backspace';
-import { Outlet, Link } from "react-router-dom";
+import { useLocation, Outlet, Link } from "react-router-dom";
 import "./Popup.css";
 import "./Game.css";
 
@@ -14,6 +14,8 @@ function Game() {
     word1: "",
     word2: ""
   })
+  const location = useLocation();
+  const player = location.state;
 
   function updatePopup() {
     setPopup(true);
@@ -163,7 +165,7 @@ function Game() {
             <center>
               {popup1 ? <h1>Player 1 Wins !</h1> : (popup2 ? <h1>Player 2 Wins !</h1> : (popup ? <h1>Draw !</h1> : null))}
             </center>
-            <button className="dashboard"><Link to="/">Home</Link></button>
+            <button className="dashboard"><Link to="/User" state={player}>Dashboard</Link></button>
           </div>
         </div>
       )}

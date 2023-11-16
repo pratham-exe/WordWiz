@@ -1,0 +1,14 @@
+#score-card {
+  background-color: orange;
+  width: 15%;
+  margin: auto;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  font-family: 'Gabarito', cursive;
+}
+
+.statistics {
+  color: white;
+  margin-left: 45px;
+}

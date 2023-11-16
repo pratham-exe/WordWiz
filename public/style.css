@@ -1,5 +1,5 @@
 body {
-  background-image: url(./img/background.jpeg);
+  background-image: url(./img/background1.jpg);
   background-size: 1800px 800px;
 }
 
@@ -70,4 +70,9 @@ a:hover {
 p {
   color: white;
   text-align: center;
+}
+
+.user {
+  display: flex;
+  margin-left: 480px;
 }
