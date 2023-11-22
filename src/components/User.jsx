@@ -1,5 +1,5 @@
 import React from "react";
-import Scorecard from "./Scorecard";
+import Footer from "./Footer";
 import { useLocation, Outlet, Link } from "react-router-dom";
 
 function User() {
@@ -20,7 +20,7 @@ function User() {
   function reloadPage() {
     var currentDocumentTimestamp = new Date(performance.timing.domLoading).getTime();
     var now = Date.now();
-    var tenSec = 10 * 1000;
+    var tenSec = 2 * 1000;
     var plusTenSec = currentDocumentTimestamp + tenSec;
     if (now > plusTenSec) {
       document.location.reload();
@@ -32,11 +32,11 @@ function User() {
   return (
     <div>
       <h2 className="welcome">{content} {name || name1}</h2>
-      <Scorecard />
-      <div className="user">
-        <button style={{width: 200, height: 100}}><Link to="/Game" state={name || name1}>Play</Link></button>
-        <button style={{width: 200, height: 100, marginLeft: 70}}><Link to="/">Home</Link></button>
+      <div className="user" style={{marginBottom: 230, marginTop: 100}}>
+        <button style={{width: 200, height: 100}}><Link to="/Game" state={name || name1} className="button-color">Play</Link></button>
+        <button style={{width: 200, height: 100, marginLeft: 70}}><Link to="/" className="button-color">Home</Link></button>
       </div>
+      <Footer />
       <Outlet />
     </div>
   );

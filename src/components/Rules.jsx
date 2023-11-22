@@ -11,7 +11,7 @@ function Rules() {
 
   return (
     <>
-      <button onClick={updateRules} className="btn-rules">RULES</button>
+      <button onClick={updateRules} className="btn-rules">Rules</button>
       {rules && (
         <div className="rules">
           <div onClick={updateRules} className="overlay"></div>

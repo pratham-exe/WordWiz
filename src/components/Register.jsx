@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SubHeading from "./SubHeading";
+import Footer from "./Footer";
 import axios from "axios";
 import { useNavigate, Outlet, Link } from "react-router-dom";
 
@@ -61,8 +62,9 @@ function Register() {
         <center>
           <button className="main" style={{width: 360, height: 60}} onClick={submitRegister}>Register</button>
         </center>
-        <p>Already have an account?<Link to="/Login"> Login</Link></p>
+        <p style={{marginBottom: 85}}>Already have an account?<Link to="/Login"> Login</Link></p>
       </form>
+      <Footer />
       <Outlet />
     </div>
   );

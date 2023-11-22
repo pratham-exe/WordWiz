@@ -32,6 +32,7 @@ function Game() {
   function updateStart() {
     if (word.word1.length === 5 && word.word2.length === 5) {
       setStart(!start);
+      console.log(document.getElementsByClassName("lock"));
     }
   }
 
@@ -95,12 +96,34 @@ function Game() {
           }
           updatePopup1();
         } else {
+          let entered_array1 = new Array();
+          let hidden_word1 = new Array();
+          for (let i=0;i<5;i++) {
+            entered_array1.push(entered_word[i]);
+            hidden_word1.push(word.word2[i]);
+          }
           for (let i=1;i<=5;i++) {
-            let current_letter = document.getElementById((word_count-5) + i);
-            if (current_letter.innerHTML === (word.word2)[i-1].toUpperCase()) {
-              current_letter.classList.add("green");
-            } else if (word.word2.includes(current_letter.innerHTML.toLowerCase())) {
-              current_letter.classList.add("yellow");
+            if ((hidden_word1[i-1]).toUpperCase() === entered_array1[i-1]) {
+              document.getElementById((word_count-5) + i).classList.add("green");
+              hidden_word1.splice(i-1, 1, "1");
+            }
+          }
+          let i = 0;
+          while (i < hidden_word1.length) {
+            if (hidden_word1[i] === "1") {
+              hidden_word1.splice(i, 1);
+            } else {
+              i++;
+            }
+          }
+          let j = 0;
+          for (let i=1;i<=5;i++) {
+            for (j in hidden_word1) {
+              if (entered_array1[i-1] === hidden_word1[j].toUpperCase()) {
+                document.getElementById((word_count-5) + i).classList.add("yellow");
+                hidden_word1.splice(j, 1);
+                break;
+              }
             }
           }
         }
@@ -111,15 +134,37 @@ function Game() {
           }
           updatePopup2();
         } else {
+          let entered_array2 = new Array();
+          let hidden_word2 = new Array();
+          for (let i=0;i<5;i++) {
+            entered_array2.push(entered_word[i]);
+            hidden_word2.push(word.word1[i]);
+          }
           for (let i=1;i<=5;i++) {
-            let current_letter = document.getElementById((word_count-5) + i);
-            if (current_letter.innerHTML === (word.word1)[i-1].toUpperCase()) {
-              current_letter.classList.add("green");
-            } else if (word.word1.includes(current_letter.innerHTML.toLowerCase())) {
-              current_letter.classList.add("yellow");
+            if ((hidden_word2[i-1]).toUpperCase() === entered_array2[i-1]) {
+              document.getElementById((word_count-5) + i).classList.add("green");
+              hidden_word2.splice(i-1, 1, "1");
             }
           }
-        }
+          let i = 0;
+          while (i < hidden_word2.length) {
+            if (hidden_word2[i] === "1") {
+              hidden_word2.splice(i, 1);
+            } else {
+              i++;
+            }
+          }
+          let j = 0;
+          for (let i=1;i<=5;i++) {
+            for (j in hidden_word2) {
+              if (entered_array2[i-1] === hidden_word2[j].toUpperCase()) {
+                document.getElementById((word_count-5) + i).classList.add("yellow");
+                hidden_word2.splice(j, 1);
+                break;
+              }
+            }
+          }
+        } 
       }
     }
   }
@@ -164,14 +209,16 @@ function Game() {
           <div className="popup-content">
             <center>
               {popup1 ? <h1>Player 1 Wins !</h1> : (popup2 ? <h1>Player 2 Wins !</h1> : (popup ? <h1>Draw !</h1> : null))}
+              <h2>Player 1 Word : {word.word1.toUpperCase()}</h2>
+              <h2>Player 2 Word : {word.word2.toUpperCase()}</h2>
             </center>
-            <button className="dashboard"><Link to="/User" state={player}>Dashboard</Link></button>
+            <button className="dashboard"><Link to="/User" style={{color: "white"}} state={player}>Dashboard</Link></button>
           </div>
         </div>
       )}
       <div className="left-board-container">
         <div className="board">
-          <input style={{width: 200}} type="password" placeholder="5 letter word for your opponent" name="word1" value={word.word1} onChange={updateWord} maxLength={5} />
+          <input style={{width: 200}} className="lock" type="password" placeholder="5 letter word for your opponent" name="word1" value={word.word1} onChange={updateWord} maxLength={5} />
           <div className="board-row">
             <div className="tile" id="1"></div>
             <div className="tile" id="2"></div>
@@ -212,7 +259,7 @@ function Game() {
       {start && <button className="start" onClick={updateStart}>START</button>}
       <div style={start ? {marginTop: -155} : {marginTop: -295}} className="right-board-container">
         <div className="board">
-          <input style={{width: 200}} type="password" placeholder="5 letter word for your opponent" name="word2" value={word.word2} onChange={updateWord} maxLength={5} />
+          <input style={{width: 200}} className="lock" type="password" placeholder="5 letter word for your opponent" name="word2" value={word.word2} onChange={updateWord} maxLength={5} />
           <div className="board-row">
             <div className="tile" id="6"></div>
             <div className="tile" id="7"></div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SubHeading from "./SubHeading";
+import Footer from "./Footer";
 import axios from "axios";
 import { useNavigate, Outlet, Link } from "react-router-dom";
 
@@ -49,12 +50,12 @@ function Login() {
       <form>
         <input style={{marginLeft: 530}} onChange={updateName} type="text" placeholder="Username" value={name} required />
         <input style={{marginLeft: 530}} onChange={updatePassword} type="password" placeholder="Password" value={password} required />
-        <a href="" style={{marginLeft: 533}}>Forgot Password?</a>
         <center>
           <button className="main" style={{width: 360, height: 60}} onClick={submitLogin}>Login</button>
         </center>
-        <p>Don't have an account?<Link to="/Register"> Sign Up</Link></p>
+        <p style={{marginBottom: 150}}>Don't have an account?<Link to="/Register"> Sign Up</Link></p>
       </form>
+      <Footer />
       <Outlet />
     </div>
   ); }
