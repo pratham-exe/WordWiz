@@ -32,7 +32,6 @@ function Game() {
   function updateStart() {
     if (word.word1.length === 5 && word.word2.length === 5) {
       setStart(!start);
-      console.log(document.getElementsByClassName("lock"));
     }
   }
 
