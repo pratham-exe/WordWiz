@@ -1,6 +1,6 @@
 # WordWiz
 
-Multiplayer version of wordle.
+Multiplayer version of wordle./
 Bored ? Let's have some fun playing this game.
 
 ## Getting Started
