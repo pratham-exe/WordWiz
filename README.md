@@ -7,6 +7,10 @@ Bored ? Let's have some fun playing this game.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Final output
+
+![Screenshot of the final output of multiplayer wordle](./public/img/demo.png)
+
 ## Prerequisites
 
 All the parts of MERN stack.
