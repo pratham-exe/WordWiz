@@ -9,7 +9,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Final output
 
-![Screenshot of the final output of multiplayer wordle](./public/img/demo.png)
+<p float="left">
+    <img src="./public/img/demo1.png" width="40%" />
+    <img src="./public/img/demo.png" width="40%" />
+</p>
 
 ## Prerequisites
 
